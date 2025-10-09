@@ -51,7 +51,7 @@ function post_login()
             exit;
         }
     } else {
-        echo json_encode(["status" => 401, "message" => "Nincs ilyen regisztrált felhasználó!"]);
+        echo json_encode(["status" => 401, "message" => "Hibás bejelentkezési adatokat adott meg!"]);
         exit;
     }
 }

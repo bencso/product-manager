@@ -1,0 +1,101 @@
+html {
+    box-sizing: border-box;
+    background-color: var(--background);
+    color: var(--text);
+    display: block;
+    width: 100dvw;
+    height: 100dvh;
+    font-size: var(--font-base);
+    padding: 24px;
+}
+
+button {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    user-select: none;
+    color: var(--text);
+    border: 2px solid var(--primary);
+}
+
+td,
+th {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease-in-out;
+    color: var(--text);
+}
+
+.sort:hover {
+    background-color: var(--primary);
+    color: var(--surface);
+    cursor: n-resize;
+}
+
+tr:nth-child(even) {
+    background-color: var(--background);
+}
+
+tr:nth-child(odd) {
+    background-color: var(--surface);
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 0 12px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+input {
+    height: 100%;
+    width: 100%;
+}
+
+th {
+    background-color: var(--primary);
+    color: var(--border);
+    font-weight: 600;
+    text-align: center;
+    border: 2px solid var(--secondary);
+}
+
+.searched {
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+.sort[data-sorrend="1"] {
+    background-color: var(--accent);
+    color: var(--surface);
+}
+
+.sort[data-sorrend="2"] {
+    background-color: var(--secondary);
+    color: var(--surface);
+}
+
+@media screen and (max-width: 480px) {
+    .tableContainer {
+        overflow-x: auto;
+    }
+
+    html {
+        padding: 8px;
+    }
+
+    input,
+    button {
+        padding: 8px 12px;
+    }
+}

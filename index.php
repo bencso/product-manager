@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html lang="hu">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bejelentkezés</title>
+<?php
+require "header.php";
+?>
+<title>Bejelentkezés</title>
+<link rel="stylesheet" href="styles/index.styles.css">
 </head>
 
 <body>
-    <h1>Bejelentkezés</h1>
     <form id="loginForm">
-        <label for="username">Felhasználónév:</label>
-        <input type="text" id="username" name="username" />
-        <label for="username">Jelszó:</label>
-        <input type="password" id="password" name="password" />
+        <h1>Bejelentkezés</h1>
+        <div class="formInput">
+            <label for="username">Felhasználónév:</label>
+            <input type="text" id="username" name="username" />
+        </div>
+        <div class="formInput">
+            <label for="username">Jelszó:</label>
+            <input type="password" id="password" name="password" />
+        </div>
         <span id="error"></span>
         <button type="submit">Bejelentkezés</button>
     </form>
