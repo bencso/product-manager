@@ -82,22 +82,22 @@ function eventListeners() {
         loadTable(e.target.value);
     });
 
-    document.getElementById("cikkszamOszlop").addEventListener("click", (e) => {
+    document.getElementById("cikkszamOszlop").addEventListener("click", () => {
         switchSort("cikkszamOszlop");
         loadTable(document.getElementById("searchInput").value);
     });
 
-    document.getElementById("megnevezesOszlop").addEventListener("click", (e) => {
+    document.getElementById("megnevezesOszlop").addEventListener("click", () => {
         switchSort("megnevezesOszlop");
         loadTable(document.getElementById("searchInput").value);
     });
 
-    document.getElementById("nettoarOszlop").addEventListener("click", (e) => {
+    document.getElementById("nettoarOszlop").addEventListener("click", () => {
         switchSort("nettoarOszlop");
         loadTable(document.getElementById("searchInput").value);
     });
 
-    document.getElementById("afaOszlop").addEventListener("click", (e) => {
+    document.getElementById("afaOszlop").addEventListener("click", () => {
         switchSort("afaOszlop");
         loadTable(document.getElementById("searchInput").value);
     });
@@ -121,7 +121,7 @@ function loadTable(search) {
     let nettoArSort = document.getElementById("nettoarOszlop").getAttribute("data-sorrend");
     let afaSort = document.getElementById("afaOszlop").getAttribute("data-sorrend");
 
-    if (cikkszamSort !== "0" || megnevezesSort !== "0" || nettoArSort !== "0") {
+    if (cikkszamSort !== "0" || megnevezesSort !== "0" || nettoArSort !== "0" || afaSort !== "0") {
         datas.sort((a, b) => {
             if (cikkszamSort !== "0") {
                 const cikkszamCompare = a.cikkszam.localeCompare(b.cikkszam);
@@ -144,7 +144,7 @@ function loadTable(search) {
 
             if (afaSort !== "0") {
                 const afaResult = a.afa - b.afa;
-                return nettoArSort === "1" ? afaResult : -afaResult;
+                return afaSort === "1" ? afaResult : -afaResult;
             }
 
             return 0;
