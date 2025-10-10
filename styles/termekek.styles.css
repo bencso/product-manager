@@ -15,6 +15,11 @@ button {
     justify-content: space-between;
     align-items: center;
     font-size: 15px;
+    width: fit-content;
+
+    p {
+        width: fit-content;
+    }
 }
 
 table {
@@ -23,6 +28,10 @@ table {
     user-select: none;
     color: var(--text);
     border: 2px solid var(--primary);
+
+    button {
+        padding: 0 12px;
+    }
 }
 
 td,
@@ -57,6 +66,13 @@ tr:nth-child(odd) {
     gap: 24px;
 }
 
+.searchContainer {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    align-items: center;
+}
+
 input {
     height: 100%;
     width: 100%;
@@ -85,7 +101,7 @@ th {
     color: var(--surface);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .tableContainer {
         overflow-x: auto;
     }
@@ -97,5 +113,10 @@ th {
     input,
     button {
         padding: 8px 12px;
+        width: 100%;
+    }
+
+    .inputContainer {
+        flex-direction: column;
     }
 }

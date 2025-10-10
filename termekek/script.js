@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 fetchProducts("", "");
             }
         })
-        .catch(err => {
+        .catch(() => {
             window.location.href = "/phpfeladat";
         });
 });

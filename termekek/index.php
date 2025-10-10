@@ -7,10 +7,11 @@ require "../header.php";
 </head>
 
 <body>
-    <button id="logoutBtn">Kijelentkezés
+    <button id="logoutBtn">
         <span class="material-symbols-outlined">
             logout
         </span>
+        <p>Kijelentkezés</p>
     </button>
     <h1>Termékek</h1>
     <div class="tableContainer">
@@ -18,14 +19,17 @@ require "../header.php";
             <tr class="none">
                 <th colspan="4">
                     <div class="inputContainer">
-                        <span class="material-symbols-outlined">
-                            search
-                        </span>
-                        <input id="searchInput" />
+                        <div class="searchContainer">
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+                            <input id="searchInput" />
+                        </div>
                         <button id="generatePdfBtn">
                             <span class="material-symbols-outlined">
                                 contract
                             </span>
+                            <p>Exportálás</p>
                         </button>
                     </div>
                 </th>

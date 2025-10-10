@@ -23,17 +23,17 @@ function get_product()
         $stmt;
 
         $sqlselect = "SELECT cikkszam, cikk_megnevezes, nettoAr, afa FROM products";
-        $orderSql = count($sorts) ? ' ORDER BY ' . implode(', ', $sorts) : '';
+        $sqlorder = count($sorts) ? ' ORDER BY ' . implode(', ', $sorts) : '';
         if ($search !== "") {
             $sql = $sqlselect . " WHERE cikkszam LIKE ? 
             OR cikk_megnevezes LIKE ? 
             OR nettoAr LIKE ? 
-            OR afa LIKE ?" . $orderSql;
+            OR afa LIKE ?" . $sqlorder;
             $stmt = $conn->prepare($sql);
             $like = '%' . $search . '%';
             $stmt->bind_param('ssss', $like, $like, $like, $like);
         } else {
-            $sql = $sqlselect . $orderSql;
+            $sql = $sqlselect . $sqlorder;
             $stmt = $conn->prepare($sql);
         }
         $stmt->execute();
