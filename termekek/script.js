@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((res) => res.json())
         .then((data) => {
             if (data.status !== 200) {
-                document.cookie = 'token=; Max-Age=0; path=/; domain=' + location.host;
                 window.location.href = "/phpfeladat";
             } else {
                 loadTable(null);
@@ -67,14 +66,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(err => {
-            document.cookie = 'token=; Max-Age=0; path=/; domain=' + location.host;
             window.location.href = "/phpfeladat";
         });
 });
 
 function eventListeners() {
     document.getElementById("logoutBtn").addEventListener("click", () => {
-        document.cookie = 'token=; Max-Age=0; path=/; domain=' + location.host;
+        fetch("../api/logout.php", {
+            method: "GET",
+            credentials: "include"
+        })
         window.location.href = "/phpfeladat";
     });
 

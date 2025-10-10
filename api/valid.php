@@ -10,16 +10,15 @@ function post_valid()
 {
     include "../db.php";
 
-
     if (!isset($_COOKIE["token"])) {
         echo json_encode(["status" => 401, "message" => "Nincs token"]);
-        return;
+        exit;
     }
 
     $rawToken = $_COOKIE["token"];
     $hashedToken = hash('sha256', $rawToken);
 
-    $sql = "SELECT COUNT(*) as count, expires FROM users_tokens WHERE token = ?";
+    $sql = "SELECT expires, COUNT(*) as count FROM users_tokens WHERE token = ? AND user_id IS NOT NULL";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $hashedToken);
     $stmt->execute();
@@ -29,9 +28,8 @@ function post_valid()
 
     if (strtotime($expires) > time() && $count > 0) {
         echo json_encode(["status" => 200, "message" => "Érvényes token"]);
-        return;
     } else {
+        setcookie("token", "", time() - 3600, "/", "", true, true);
         echo json_encode(["status" => 401, "message" => "Érvénytelen token"]);
-        return;
     }
 }

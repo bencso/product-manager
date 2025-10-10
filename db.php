@@ -45,4 +45,11 @@ if ($count == 0) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $hashedPassword);
     $stmt->execute();
+    $stmt->close();
+    $hashedPassword = password_hash("KisBela123!", PASSWORD_DEFAULT);
+    $sql = "INSERT INTO users (username, password) VALUES ('Kis Béla!', ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $hashedPassword);
+    $stmt->execute();
+    $stmt->close();
 }

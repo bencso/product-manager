@@ -3,7 +3,6 @@ require "../header.php";
 ?>
 <link rel="stylesheet" href="../styles/index.styles.css">
 <link rel="stylesheet" href="../styles/termekek.styles.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <title>Termékek</title>
 </head>
 
@@ -62,7 +61,12 @@ require "../header.php";
                 yPos += 10;
             }
         });
-        pdf.save(`termekek_${new Date().toLocaleString("hu-hu")}.pdf`);
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        const h = String(now.getHours()).padStart(2, '0');
+        pdf.save(`termekek_lekerdezes_${y}_${m}_${d}_${h}.pdf`);
     }
 </script>
 

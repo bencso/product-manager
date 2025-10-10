@@ -6,6 +6,7 @@
     --surface: #ffffff;
     --text: #1e293b;
     --border: #e2e8f0;
+    --error: #ffdede;
 
     --font-sm: clamp(0.7rem, 1.5vw, 0.9rem);
     --font-base: clamp(0.9rem, 2.5vw, 1.1rem);
@@ -30,7 +31,7 @@ html {
     font-size: var(--font-base);
 }
 
-#loginForm {
+.authForm {
     display: flex;
     flex-direction: column;
     background-color: var(--border);
@@ -38,7 +39,7 @@ html {
     border-radius: 18px;
     padding: 24px 32px;
     gap: 24px;
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
 
     h1 {
@@ -87,32 +88,34 @@ input {
 }
 
 #error {
-    font-size: var(--font-sm);
-    text-align: center;
+    opacity: 0;
+    padding: 12px;
+    color: var(--text);
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    top: 12px;
+    border: 1px solid var(--text);
+    background-color: var(--error);
+    border-radius: 12px;
+    font-size: var(--font-base);
+    transition: opacity 300ms linear;
 }
 
 @media screen and (max-width: 1024px) {
-    #loginForm {
-        width: 50%;
+    .authForm {
+        width: 80%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    #loginForm {
-        width: 70%;
-        padding: 16px 24px;
-        gap: 20px;
-    }
-
-    input,
-    button {
-        padding: 10px 16px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    #loginForm {
-        width: 90%;
+    .authForm {
+        width: 80%;
         padding: 12px 16px;
         gap: 16px;
     }
