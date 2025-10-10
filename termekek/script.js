@@ -1,6 +1,4 @@
-// Termék tesztadatok
 let datas = [];
-let datasCopy = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch("../api/valid.php", {
@@ -43,11 +41,9 @@ function fetchProducts({ sorts = "", search = "" } = {}) {
                     nettoAr: Number(item.nettoAr),
                     afa: Number(item.afa)
                 }));
-                datasCopy = [...datas];
                 loadTable(search);
             } else {
                 datas = [];
-                datasCopy = [];
                 loadTable(search);
             }
         })
