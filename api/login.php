@@ -28,6 +28,7 @@ function post_login()
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
+    $stmt->close();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
@@ -53,6 +54,7 @@ function post_login()
                 $stmt->bind_param("ss", $user["user_id"], $hashedToken);
             }
             $stmt->execute();
+            $stmt->close();
 
             setcookie("token", $rawToken, time() + (4 * 24 * 60 * 60), "/", "", true, true);
             echo json_encode(["status" => 200, "message" => "Sikeres bejelentkezés"]);

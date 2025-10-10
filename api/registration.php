@@ -39,6 +39,7 @@ function post_registration()
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result()->fetch_assoc()["count"];
+    $stmt->close();
 
     if ($result === 0) {
         $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?,?)");

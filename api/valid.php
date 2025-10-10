@@ -25,6 +25,7 @@ function post_valid()
     $result = $stmt->get_result()->fetch_assoc();
     $count = $result["count"];
     $expires = $result["expires"];
+    $stmt->close();
 
     if (strtotime($expires) > time() && $count > 0) {
         echo json_encode(["status" => 200, "message" => "Érvényes token"]);

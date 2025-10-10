@@ -39,6 +39,7 @@ function get_product()
         $stmt->execute();
         $results = $stmt->get_result();
         $rows = $results ? $results->fetch_all(MYSQLI_ASSOC) : [];
+        $stmt->close();
 
         echo json_encode(['status' => 200, 'data' => $rows]);
     } catch (Exception $e) {
