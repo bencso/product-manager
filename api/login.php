@@ -40,7 +40,11 @@ function post_login()
             $stmt_check = $conn->prepare("SELECT COUNT(*) as count FROM users WHERE user_id = ?");
             $stmt_check->bind_param("s", $user["user_id"]);
             $stmt_check->execute();
-            $count = $stmt_check->get_result()->fetch_assoc()["count"];
+            $count = $stmt_check->get_result()->fetch_assoc()["count"] ?? 0;
+            if ($count == 0) {
+                echo json_encode(["status" => 401, "message" => "Hibás bejelentkezési adatokat adott meg!"]);
+                exit;
+            }
             $stmt_token = $conn->prepare("SELECT token FROM users_tokens WHERE user_id = ?");
             $stmt_token->bind_param("s", $user["user_id"]);
             $stmt_token->execute();

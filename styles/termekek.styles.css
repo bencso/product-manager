@@ -20,6 +20,11 @@ button {
     p {
         width: fit-content;
     }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 50%;
+    }
 }
 
 table {

@@ -29,7 +29,6 @@ function post_registration()
         exit;
     }
 
-
     if ($password !== $repassword) {
         echo json_encode(["status" => 401, "message" => "A megadott jelszavak nem egyeznek!"]);
         exit;
@@ -38,7 +37,7 @@ function post_registration()
     $stmt = $conn->prepare("SELECT COUNT(*) as count FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc()["count"];
+    $result = $stmt->get_result()->fetch_assoc()["count"] ?? 0;
     $stmt->close();
 
     if ($result === 0) {

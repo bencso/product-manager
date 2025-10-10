@@ -1,6 +1,6 @@
 // Termék tesztadatok
-let datas;
-let datasCopy;
+let datas = [];
+let datasCopy = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch("../api/valid.php", {
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "/phpfeladat";
             } else {
                 eventListeners();
-                fetchProducts("", "");
+                fetchProducts();
             }
         })
         .catch(() => {
@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 });
 
-function fetchProducts(sorts, search) {
+function fetchProducts({ sorts = "", search = "" } = {}) {
+    if (typeof sorts !== 'object' || sorts === null) sorts = {};
     const params = new URLSearchParams();
     if (sorts.cikkszam) params.set("cikkszam", sorts.cikkszam);
     if (sorts.cikk_megnevezes) params.set("cikk_megnevezes", sorts.cikk_megnevezes);
@@ -61,36 +62,54 @@ function eventListeners() {
             method: "GET",
             credentials: "include"
         })
-        window.location.href = "/phpfeladat";
+            .finally(() => {
+                window.location.href = "/phpfeladat";
+            })
     });
 
     document.getElementById("searchInput").addEventListener("input", (e) => {
         const search = e.target.value;
         if (search.trim() === "") {
-            fetchProducts(sortLogic(), "");
+            fetchProducts({
+                sorts: sortLogic(),
+            });
         } else {
-            fetchProducts(sortLogic(), search);
+            fetchProducts({
+                sorts: sortLogic(), search: search
+            });
         }
     });
 
     document.getElementById("cikkszamOszlop").addEventListener("click", () => {
         switchSort("cikkszamOszlop");
-        fetchProducts(sortLogic(), document.getElementById("searchInput").value);
+        fetchProducts({
+            sorts: sortLogic(),
+            search: document.getElementById("searchInput").value
+        });
     });
 
     document.getElementById("megnevezesOszlop").addEventListener("click", () => {
         switchSort("megnevezesOszlop");
-        fetchProducts(sortLogic(), document.getElementById("searchInput").value);
+        fetchProducts({
+            sorts: sortLogic(),
+            search: document.getElementById("searchInput").value
+        });
     });
 
     document.getElementById("nettoarOszlop").addEventListener("click", () => {
         switchSort("nettoarOszlop");
-        fetchProducts(sortLogic(), document.getElementById("searchInput").value);
+        fetchProducts({
+            sorts: sortLogic(),
+            search: document.getElementById("searchInput").value
+        });
     });
 
     document.getElementById("afaOszlop").addEventListener("click", () => {
         switchSort("afaOszlop");
-        fetchProducts(sortLogic(), document.getElementById("searchInput").value);
+        fetchProducts({
+            sorts: sortLogic(),
+            search: document.getElementById("searchInput").value
+        });
     });
 }
 
@@ -121,6 +140,12 @@ function loadTable(search) {
         rows[2].remove();
     }
 
+    if (datas.length == 0) {
+        document.getElementById("generatePdfBtn").disabled = true;
+    } else {
+        document.getElementById("generatePdfBtn").disabled = false;
+    }
+
     datas.forEach(data => {
         if (!search || data.cikkszam.toLowerCase().includes(search.toLowerCase()) || data.megnevezes.toLowerCase().includes(search.toLowerCase()) || data.nettoAr.toString().includes(search)) {
             const tableRow = document.createElement("tr");
@@ -136,12 +161,19 @@ function loadTable(search) {
                 nettoAr = String(nettoAr).replace(regex, '<span class="searched">$1</span>');
             }
 
-            tableRow.innerHTML = `
-                    <td>${cikkszam}</td>
-                    <td>${megnevezes}</td>
-                    <td>${nettoAr} Ft</td>
-                    <td>${afa}%</td>
-                `;
+            const cikkSzamRow = document.createElement("td");
+            cikkSzamRow.innerHTML = cikkszam;
+            const megnevezesRow = document.createElement("td");
+            megnevezesRow.innerHTML = megnevezes;
+            const nettoArRow = document.createElement("td");
+            nettoArRow.innerHTML = nettoAr + " Ft";
+            const afaRow = document.createElement("td");
+            afaRow.innerHTML = afa + "%";
+
+            tableRow.appendChild(cikkSzamRow);
+            tableRow.appendChild(megnevezesRow);
+            tableRow.appendChild(nettoArRow);
+            tableRow.appendChild(afaRow);
 
             document.getElementById("itemsTable").appendChild(tableRow);
         }

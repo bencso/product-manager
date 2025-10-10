@@ -34,7 +34,7 @@ $sql = "CREATE TABLE IF NOT EXISTS users_tokens (
     user_id INT UNIQUE,
     token VARCHAR(255) NOT NULL,
     expires DATETIME DEFAULT (NOW() + INTERVAL 4 DAY),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 )";
 
 $conn->query($sql);
