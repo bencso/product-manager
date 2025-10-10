@@ -61,7 +61,6 @@ require "header.php";
                     const errorElement = document.getElementById("error");
                     const errorContentElement = document.getElementById("errorContent");
 
-                    console.log(data);
                     if (data.status === 200) {
                         window.location.href = '/phpfeladat/termekek';
                     } else {
