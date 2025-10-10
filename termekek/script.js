@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((res) => res.json())
         .then((data) => {
             if (data.status !== 200) {
-                window.location.href = "/phpfeladat";
+                window.location.href = "/termekek_feladat";
             } else {
                 eventListeners();
                 fetchProducts();
             }
         })
         .catch(() => {
-            window.location.href = "/phpfeladat";
+            window.location.href = "/termekek_feladat";
         });
 });
 
@@ -59,7 +59,7 @@ function eventListeners() {
             credentials: "include"
         })
             .finally(() => {
-                window.location.href = "/phpfeladat";
+                window.location.href = "/termekek_feladat";
             })
     });
 

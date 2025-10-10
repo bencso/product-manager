@@ -23,7 +23,7 @@ require "header.php";
             <input type="password" id="password" name="password" />
         </div>
         <div>
-            <p>Ha még nincs fiókja <a href="/phpfeladat/registration">kattintson ide!</a></p>
+            <p>Ha még nincs fiókja <a href="/termekek_feladat/registration">kattintson ide!</a></p>
         </div>
         <button type="submit">Bejelentkezés</button>
     </form>
@@ -38,7 +38,7 @@ require "header.php";
                 return res.json()
             })
             .then((data) => {
-                if (data.status == 200) window.location.href = "/phpfeladat/termekek";
+                if (data.status == 200) window.location.href = "/termekek_feladat/termekek";
             })
             .catch(err => {
                 console.error("Validation error:", err);
@@ -62,7 +62,7 @@ require "header.php";
                     const errorContentElement = document.getElementById("errorContent");
 
                     if (data.status === 200) {
-                        window.location.href = '/phpfeladat/termekek';
+                        window.location.href = '/termekek_feladat/termekek';
                     } else {
                         document.querySelectorAll("input").forEach((input) => {
                             input.value = "";

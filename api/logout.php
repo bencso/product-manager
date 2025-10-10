@@ -11,7 +11,7 @@ function get_logout()
     include "../db.php";
 
     if (!isset($_COOKIE["token"])) {
-        header("Location: /phpfeladat");
+        header("Location: /termekek_feladat");
         echo json_encode(["status" => 401, "message" => "Nincs token"]);
         exit;
     }
