@@ -36,6 +36,10 @@ A projekt során gyakoroltam:
 - Dinamikus szűrés és rendezés SQL-ben
 - PDF generálás JavaScripttel
 
+## 📄 Licensz
+
+MIT License - Szabadon használható és módosítható
+
 ***
 
 **Státusz:** ✅ Befejezett
